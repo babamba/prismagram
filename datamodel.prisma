@@ -1,0 +1,111 @@
+# 느낌표는 필수 일때 
+# unique 는 fk pk
+# 배열은 해당 요소 여러개 일때 
+# 데이터 모델 자기자신에대해 관계형성이 가능
+
+# mutation create 사용자를 생성하는거
+# connect 생성된 사용자가 있으면 연결
+# disconnect 
+
+type User {
+  id: ID! @unique
+  username: String! @unique
+  email: String! @unique
+  firstName: String @default(value: "")
+  lastName: String
+  bio: String
+  following: [User!]! @relation(name: "FollowRelation")
+  followers: [User!]! @relation(name: "FollowRelation")
+  posts: [Post!]!
+  likes: [Like!]!
+  comments: [Comment!]!
+  rooms:[Room!]!
+}
+
+type Post {
+  id: ID! @unique
+  location: String
+  caption: String!
+  user: User!
+  files: [File!]!
+  likes: [Like!]!
+  comments: [Comment!]!
+}
+
+type Like {
+  id: ID! @unique
+  user: User!
+  post: Post!
+}
+
+type Comment {
+  id: ID! @unique
+  text: String!
+  user: User!
+  post: Post!
+}
+
+type File {
+  id: ID! @unique
+  url: String!
+  post: Post!
+}
+
+type Room{
+  id: ID! @unique
+  participants: [User!]!
+  messages:[Message!]!
+}
+
+type Message{
+  id: ID! @unique
+  text: String! 
+  from: User!  @relation(name:"From")
+  to: User! @relation(name:"To")
+  room:Room!
+}
+
+
+
+# Write your query or mutation here
+# {
+#   users {
+#     id
+#   	username
+#     email
+#     firstName
+#     lastName
+#     bio
+    
+#   }
+# }
+# 유저생성
+# mutation{
+#   createUser(data:{
+#     username: "test"
+#     email: "test@test.com"
+#     firstName: "test"
+#     lastName: "user"
+#     bio: "gg"
+#   }){
+#     id
+#   }
+# }
+
+# 팔로잉 컬럼에 유저 connect 후 팔로잉한 상대의 id결과 리턴
+# mutation{
+#   updateUser(data:{following:{
+#     connect:{
+#       id: "cju28e0a06opd0b99i6paqbbi"
+#     }
+#   }}where:{id:"cju2a34do71mb0b999x0o6ne1"})
+#   {
+#     username
+#     email
+#     firstName
+#     lastName
+#     following{
+#     	id
+#   	}
+#   }
+# }
