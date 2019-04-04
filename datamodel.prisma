@@ -66,7 +66,6 @@ type Message{
 }
 
 
-
 # Write your query or mutation here
 # {
 #   users {
@@ -107,5 +106,47 @@ type Message{
 #     following{
 #     	id
 #   	}
+#   }
+# }
+
+
+# 팔로잉 컬럼에 유저 connect 후 팔로잉한 상대의 id결과 리턴
+# following과 follwer가 relationship이 되어있기 때문에 자동으로 
+# following한 사용자의 follower에 등록됨
+
+# mutation{
+#   updateUser(data:{
+#     following:{
+#       connect:{ id: "cju28e0a06opd0b99i6paqbbi"}}}
+#     	where:{id:"cju2a34do71mb0b999x0o6ne1"})
+#   {
+#     username
+#     email
+#     firstName
+#     lastName
+#     following{
+#     	id
+#   	}
+#     followers{
+#       id
+#     }
+#   }
+# }
+
+# {
+#   user(where:{id:"cju28e0a06opd0b99i6paqbbi"}){
+#     username
+#     followers{
+#       username
+#       lastName
+#       email
+#     }
+#     following{
+#       username
+#       lastName
+#       email
+#     }
+#     lastName
+#     firstName
 #   }
 # }
