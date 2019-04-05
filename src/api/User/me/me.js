@@ -4,6 +4,7 @@ import { USER_FRAGMENT } from "../../../fragments"
 export default {
      Query : {
           me: async(_, args , {request, isAuthenticated}) => {
+               //console.log(" me parent " , _)
                isAuthenticated(request);
                const { user } = request;
                //return prisma.user({id: user.id}).$fragment(USER_FRAGMENT);
@@ -18,5 +19,21 @@ export default {
                     posts
                };
           }
-     }
+     },
+     //db필드에는 없는  computed 혹은 custom field(임의) 
+     // resolver 에 있으니까 custom resolver
+
+     // parent 는 resolver를 call하는 resolver
+     // 여기서의 fullname의 parent는 위 resolver의 리턴된 user 
+
+     // schema.js 에서 resolver들을 하나로 merge 하고있기때문에 다른 api에서도 fullName을 호출할 수 있다.
+     // User:{
+     //      //fullName:(_, args, { request }) => {
+     //      //parent 로 부터 모든걸 받을 수있다.
+     //      fullName: (parent) => {
+     //           console.log("parent", parent)
+     //           //console.log(request);
+     //           return `${parent.firstName} ${parent.lastName}` ;
+     //      }
+     // },
 };

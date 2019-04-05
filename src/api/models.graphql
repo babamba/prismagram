@@ -21,6 +21,10 @@ type User {
   comments: [Comment!]!
   rooms:[Room!]!
   loginSecret:String
+  # computed
+  fullName: String
+  isFollowing:Boolean!
+  isSelf:Boolean!
 }
 
 type Post {
