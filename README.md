@@ -4,7 +4,10 @@ Instragram clone with Express + Prisma + React and React Native
 
 ## User Stories
 
-- [ ] Like / Unlike a photo
+- [✔] Create account
+- [✔] Request Secret
+- [✔] Confirm Secret
+- [✔] Like / Unlike a photo
 - [ ] Comment on a photo
 - [ ] Search by user
 - [ ] Search by location
