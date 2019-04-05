@@ -7,6 +7,10 @@
 # connect 생성된 사용자가 있으면 연결
 # disconnect 
 
+
+#datamodel.prisma 는 db에 동기화될 테이블 필드 만 동기화하면된다
+# fragment 를 위한 type들을 위해 deploy 할필욘없음
+
 type User {
   id: ID! @unique
   username: String! @unique
