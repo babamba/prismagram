@@ -1,9 +1,8 @@
-import { isAuthenticated } from "../../../middlewares";
 import { prisma } from "../../../../generated/prisma-client"
 
 export default {
      Mutation : {
-          toggleLike : async(_, args, { request }) => {
+          toggleLike : async(_, args, { request , isAuthenticated }) => {
                // 토큰이 없을때는 실행되지않도록 middleware 처음 모든요소들에 사용
                isAuthenticated(request);
                const { postId } = args;
