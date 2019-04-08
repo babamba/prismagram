@@ -35,6 +35,7 @@ type Post {
   files: [File!]!
   likes: [Like!]!
   comments: [Comment!]!
+  isLiked: Boolean!
 }
 
 type Like {
@@ -56,13 +57,13 @@ type File {
   post: Post!
 }
 
-type Room{
+type Room {
   id: ID! 
   participants: [User!]!
   messages:[Message!]!
 }
 
-type Message{
+type Message {
   id: ID! 
   text: String! 
   from: User!  
