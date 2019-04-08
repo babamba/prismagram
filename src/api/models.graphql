@@ -26,6 +26,8 @@ type User {
   fullName: String
   isFollowing:Boolean!
   isSelf:Boolean!
+  followingCount: Int!
+  followersCount: Int!
   createdAt:String
   updatedAt:String
 }
@@ -86,11 +88,3 @@ type Message {
   createdAt:String
   updatedAt:String
 }
-
-type UserProfile {
-  user: User!
-  posts: [Post!]!
-  createdAt:String
-  updatedAt:String
-}
-
