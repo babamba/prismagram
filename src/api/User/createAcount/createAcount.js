@@ -5,20 +5,24 @@ export default{
           createAccount : async(_, args,) => {
                //console.log(prisma)
                const { username, email, firstName="", lastName="", bio="" } = args;
-               const exist = await prisma.$exists.user({username})
-               if(exist){
+               const exists = await prisma.$exists.user({
+                    OR:[
+                         { username },
+                         { email }
+                    ]
+               })
+               if(exists){
                     throw Error("This username is already taken")
                }
-
                // try {
-                    await prisma.createUser({
-                         username,
-                         email, 
-                         firstName, 
-                         lastName, 
-                         bio
-                    })
-                    return true;
+               await prisma.createUser({
+                    username,
+                    email, 
+                    firstName, 
+                    lastName, 
+                    bio
+               })
+               return true;
                // } catch (error) {
                //      console.log(error);
                //      return false;
@@ -27,4 +31,4 @@ export default{
                //return null
           }
      }
-}
+};
