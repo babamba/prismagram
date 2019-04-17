@@ -35,13 +35,11 @@ export default {
           },
           // 내가 요청한 아이디를 팔로잉하고있는지
           isFollowing: async(parent, _ , {request}) => {
-               console.log("parentId : ", parentId)
-
                // 요청한 유저  
                const { user } = request;
-
                // id
                const { id: parentId } = parent;
+               console.log("parentId : ", parentId)
 
                try {
                     //const exist = await prisma.$exists.user({
