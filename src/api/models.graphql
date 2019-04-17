@@ -28,6 +28,7 @@ type User {
   isSelf:Boolean!
   followingCount: Int!
   followersCount: Int!
+  postsCount: Int!
   createdAt:String
   updatedAt:String
 }
